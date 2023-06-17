@@ -3,26 +3,25 @@ import React from "react";
 interface Iprops {
   people: {
     name: string;
-    url: string;
+    image: string;
     age: number;
     note?: string;
   }[];
 }
 
-/*export const List = ({ people }: Iprops) => {
-  console.log(people);
-  return (
-    <>
-      <h4>Im a list</h4>
-    </>
-  );
-};*/
-
+//export const List = ({ people }: Iprops) => {}
 export const List: React.FC<Iprops> = ({ people }) => {
-  console.log(people);
-  return (
-    <>
-      <h4>Im a list</h4>
-    </>
-  );
+  const renderList = (): JSX.Element[] =>
+    people.map(person => (
+      <li className="List">
+        <div className="List-header">
+          <img className="List-img" src={person.image} />
+          <h2>{person.name}</h2>
+        </div>
+        <p>{person.age} years old</p>
+        <p className="List-note">{person.note}</p>
+      </li>
+    ));
+
+  return <ul>{renderList()}</ul>;
 };
